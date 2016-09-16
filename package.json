@@ -3,11 +3,29 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:floriansimon1/dragonfly-snes.git"
+    "url": "git+ssh://git@github.com/floriansimon1/dragonfly-snes.git"
   },
   "version": "1.0.0",
   "description": "Driver for cheap DragonFly USB SNES controllers",
   "dependencies": {
     "node-hid": "^0.5.1"
-  }
+  },
+  "name": "dragonfly-snes",
+  "bugs": {
+    "url": "https://github.com/floriansimon1/dragonfly-snes/issues"
+  },
+  "homepage": "https://github.com/floriansimon1/dragonfly-snes#readme",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dragonflyusb",
+    "snes",
+    "node-hid",
+    "driver",
+    "controller",
+    "gamepad"
+  ]
 }
