@@ -32,6 +32,12 @@ const keys = {
 
 const keyNames = Object.keys(keys);
 
+let ControllerPrototype = Object.create(EventEmitter.prototype);
+
+ControllerPrototype.close = function () {
+    this.private.device.close();
+};
+
 /*
 * Path is retrieved by calling Controller.list().
 *
@@ -40,18 +46,20 @@ const keyNames = Object.keys(keys);
 * can be called as a factory.
 */
 let Controller = function (path) {
-    let self = Object.create(Controller.prototype);
+    let self = Object.create(ControllerPrototype);
 
     self.private = {};
 
-    if (!Controller.list().find(device => device.path === path)) {
+    if (!Controller.list().find(devicePath => devicePath === path)) {
         throw Controller.InvalidDeviceError;
     }
 
     self.private.device = new HID.HID(path);
 
-    self.keysPressed = keyNames.reduce((keyName, keysPressed) => {
+    self.keysPressed = keyNames.reduce((keysPressed, keyName) => {
         keysPressed[keyName] = false;
+
+        return keysPressed;
     }, {});
 
     self.private.device.on("data", data => {
@@ -89,10 +97,6 @@ Controller.list = () => (
     .filter(device => device.vendorId === 121 && device.productId === 17)
     .map(device => device.path)
 );
-
-Controller.prototype.close = function () {
-    this.private.device.close();
-};
 
 Controller.close = controller => {
     controller.close();

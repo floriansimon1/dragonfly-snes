@@ -5,7 +5,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/floriansimon1/dragonfly-snes.git"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Driver for cheap DragonFly USB SNES controllers",
   "dependencies": {
     "node-hid": "^0.5.1"
